@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ball Classifier</title>
+</head>
+<body>
+    <h1>Upload an image of a ball</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+    <h2>The ball type is: {{ predicted_class_label }}</h2>
+</body>
+</html>
