@@ -2,7 +2,7 @@ name: Batch predictions
 
 on:
   schedule:
-    - cron: '* * * * *' # Run every day at midnight UTC (https://crontab.guru/#0_0_*_*_*)
+    - cron: '0 0 * * *' # Run every day at midnight UTC (https://crontab.guru/#0_0_*_*_*)
 
   workflow_dispatch: # allows manual triggering of the workflow
 
