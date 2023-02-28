@@ -2,6 +2,3 @@ Flask
 numpy
 tensorflow
 keras
-tensorflow-gpu==2.6.0
-cudnn==8.2.4.15
-cudatoolkit==11.2.2
