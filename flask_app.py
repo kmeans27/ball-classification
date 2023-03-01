@@ -7,6 +7,9 @@ import os
 
 app = Flask(__name__)
 
+# Set environment variable to use CPU only
+os.environ["CUDA_VISIBLE_DEVICES"] = ""
+
 # Load the saved model
 model = keras.models.load_model('ball_classifier.h5')
 train_dir = 'data/train'
