@@ -3,21 +3,19 @@ import tensorflow as tf
 from tensorflow import keras
 from werkzeug.utils import secure_filename
 import numpy as np
-from keras.utils import load_img, img_to_array
-from keras.models import load_model
 import os
 
 app = Flask(__name__)
 
 # Load the saved model
-model = load_model('ball_classifier.h5')
+model = keras.models.load_model('ball_classifier.h5')
 train_dir = 'data/train'
 class_labels = sorted(os.listdir(train_dir))
 
 def classify_image(file_path):
     # Make a prediction on the uploaded file
-    img = load_img(file_path, target_size=(224, 224))
-    img = img_to_array(img) / 255.0
+    img = keras.utils.load_img(file_path, target_size=(224, 224))
+    img = keras.utils.img_to_array(img) / 255.0
     img = np.expand_dims(img, axis=0)
     prediction = model.predict(img)[0]
     predicted_class_index = np.argmax(prediction)
