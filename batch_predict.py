@@ -10,6 +10,9 @@ if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 csv_path = os.path.join(output_dir, 'predictions.csv')
 
+# Set environment variable to use CPU only
+os.environ["CUDA_VISIBLE_DEVICES"] = ""
+
 # Get the list of image files
 image_files = [f for f in os.listdir(image_dir) if f.endswith('.jpg')]
 
