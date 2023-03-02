@@ -13,7 +13,7 @@ branch = 'main'
 path = 'output'
 
 # GitHub API token
-token = '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'
+token = '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'
 
 # Set up paths and directories
 image_dir = 'new_images'
