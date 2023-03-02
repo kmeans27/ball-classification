@@ -4,6 +4,7 @@ from datetime import datetime
 from tensorflow import keras
 import numpy as np
 from github import Github
+from github import InputFileContent
 
 # GitHub repository information
 owner = 'kmeans27'
@@ -54,12 +55,15 @@ with open(csv_path, 'w', newline='') as csv_file:
         writer.writerow([file, predicted_class_label, timestamp])
 
 # Push changes to GitHub
-g = Github(os.getenv('GITHUB_TOKEN'))
-repo = g.get_repo(os.getenv('GITHUB_REPOSITORY'))
-branch = os.getenv('GITHUB_REF').split('/')[-1]
-path = os.path.join(output_dir, 'predictions.csv')
-with open(csv_path, 'r') as file:
+g = Github(token)
+repo = g.get_repo(f"{owner}/{repo}")
+branch = repo.get_branch(branch)
+file_name = "predictions.csv"
+file_path = f"{path}/{file_name}"
+contents = repo.get_contents(file_path, ref=branch.name)
+with open(csv_path, "r") as file:
     content = file.read()
-file_name = os.path.basename(csv_path)
-contents = repo.get_contents(path, ref=branch)
-repo.update_file(contents.path, f'Update {file_name}', content, contents.sha, branch=branch)
+if contents:
+    repo.update_file(contents.path, f'Update {file_name}', content, contents.sha, branch=branch.name)
+else:
+    repo.create_file(file_path, f'Add {file_name}', content, branch=branch.name)
