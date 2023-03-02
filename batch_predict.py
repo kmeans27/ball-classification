@@ -10,7 +10,7 @@ from github import InputFileContent
 owner = 'kmeans27'
 repo = 'ball-classification'
 branch = 'main'
-path = 'new_images'
+path = 'output'
 
 # GitHub API token
 token = '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'
