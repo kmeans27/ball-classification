@@ -3,6 +3,7 @@ import csv
 from datetime import datetime
 from tensorflow import keras
 import numpy as np
+from github import Github
 
 # Set up paths and directories
 image_dir = 'new_images'
@@ -13,7 +14,6 @@ csv_path = os.path.join(output_dir, 'predictions.csv')
 
 # Set environment variable to use CPU only
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
-
 
 # Load the saved model
 model = keras.models.load_model('ball_classifier.h5')
@@ -31,9 +31,6 @@ def classify_image(file_path):
     return predicted_class_label
 
 
-
-
-
 # Get the list of image files
 image_files = [f for f in os.listdir(image_dir) if f.endswith('.jpg')]
 
@@ -46,3 +43,14 @@ with open(csv_path, 'w', newline='') as csv_file:
         predicted_class_label = classify_image(file_path)
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         writer.writerow([file, predicted_class_label, timestamp])
+
+# Push changes to GitHub
+g = Github(os.getenv('GITHUB_TOKEN'))
+repo = g.get_repo(os.getenv('GITHUB_REPOSITORY'))
+branch = os.getenv('GITHUB_REF').split('/')[-1]
+path = os.path.join(output_dir, 'predictions.csv')
+with open(csv_path, 'r') as file:
+    content = file.read()
+file_name = os.path.basename(csv_path)
+contents = repo.get_contents(path, ref=branch)
+repo.update_file(contents.path, f'Update {file_name}', content, contents.sha, branch=branch)
