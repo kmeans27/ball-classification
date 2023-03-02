@@ -1,0 +1,5 @@
+filename,predicted_class_label,timestamp
+1.jpg,baseball,2023-03-01 15:26:13
+2.jpg,golf ball,2023-03-01 15:26:13
+3.jpg,basketball,2023-03-01 15:26:13
+4.jpg,football,2023-03-01 15:26:13
