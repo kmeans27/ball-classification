@@ -9,8 +9,8 @@ from github import InputFileContent
 
 # GitHub repository information
 owner = 'kmeans27'
-repo = 'ball-classification'
-branch = 'main'
+repo_name = 'ball-classification'
+branch_name = 'main'
 path = 'output'
 
 # GitHub API token
@@ -58,8 +58,8 @@ with open(csv_path, 'w', newline='') as csv_file:
 
 # Push changes to GitHub
 g = Github(token)
-repo = g.get_repo(f"{owner}/{repo}")
-branch = repo.get_branch(branch)
+repo = g.get_repo(f"{owner}/{repo_name}")
+branch = repo.get_branch(branch_name)
 file_name = "predictions.csv"
 file_path = f"{path}/{file_name}"
 with open(csv_path, "r") as file:
