@@ -13,7 +13,7 @@ branch = 'main'
 path = 'output'
 
 # GitHub API token
-token = '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'
+token = os.environ.get("PAT")
 
 # Set up paths and directories
 image_dir = 'new_images'
