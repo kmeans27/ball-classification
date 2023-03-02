@@ -5,6 +5,15 @@ from tensorflow import keras
 import numpy as np
 from github import Github
 
+# GitHub repository information
+owner = 'kmeans27'
+repo = 'ball-classification'
+branch = 'main'
+path = 'new_images'
+
+# GitHub API token
+token = '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'
+
 # Set up paths and directories
 image_dir = 'new_images'
 output_dir = 'output'
