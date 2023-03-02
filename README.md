@@ -12,3 +12,9 @@
  </br> b) write the predictions to the predictions.csv file
 5. Created a actions.yml file to execute the script every night
 6. installed git LFS to upload ball-classifier.h5 as the file is larger than 100MB
+7. some bug fixes on the .yml actions file: 
+</br> fixed typo
+</br> python3 because of ubuntu
+</br> set lfs to true which fixed the error
+8. But the classify_image() function into batch_predict.py which makes the flask_app.py currently useless
+9. Next step is to somehow use the flask app to upload the images and get the results from the github action batch processing
